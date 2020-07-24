@@ -1,2 +1,2 @@
-# PIMS
+# SCRUMADILLO
 project demo
