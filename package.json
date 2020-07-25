@@ -20,9 +20,6 @@
   },
   "homepage": "https://github.com/Pink-Armadillo/scrumadillo#readme",
   "devDependencies": {
-    "webpack": "^4.44.0",
-    "webpack-cli": "^3.3.12",
-    "webpack-dev-server": "^3.11.0",
     "@babel/core": "^7.10.5",
     "@babel/preset-env": "^7.10.4",
     "@babel/preset-react": "^7.10.4",
@@ -35,7 +32,10 @@
     "html-webpack-plugin": "^4.3.0",
     "nodemon": "^2.0.4",
     "react-scripts": "^3.4.1",
-    "style-loader": "^1.2.1"
+    "style-loader": "^1.2.1",
+    "webpack": "^4.44.0",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0"
   },
   "dependencies": {
     "@material-ui/core": "^4.11.0",
@@ -43,6 +43,7 @@
     "axios": "^0.19.2",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "fontsource-roboto": "^2.2.6",
     "mongoose": "^5.9.25",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",

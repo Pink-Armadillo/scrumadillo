@@ -10,7 +10,6 @@ class App extends Component {
   render() {
     return (
       <div>
-        test in app
         <Canvas />
       </div>
     );
