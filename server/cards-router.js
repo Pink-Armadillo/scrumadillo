@@ -4,7 +4,7 @@ const cardsController = require('./cards-controller.js');
 const cardsRouter = express.Router();
 
 cardsRouter.get('/', cardsController.getCards, (req, res) => {
-  return res.status(200).json('Here is your response');
+  return res.status(200).json(res.locals.cards);
 });
 
 module.exports = cardsRouter;

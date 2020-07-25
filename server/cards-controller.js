@@ -1,10 +1,14 @@
-const db = require('./models/card-models.js');
+const { Card } = require('./models/card-models.js');
 
 const cardsController = {};
 
 cardsController.getCards = (req, res, next) => {
-  console.log(req.body);
-  return next();
+  Card.find({})
+    .then((data) => {
+      res.locals.cards = data;
+      return next();
+    })
+    .catch((err) => next(err));
 };
 
 module.exports = cardsController;
