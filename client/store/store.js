@@ -1,8 +1,15 @@
-import { configureStore } from '@reduxjs/toolkit';
-import cardReducer from '../reducers/cardReducer';
+import {
+  configureStore,
+  getDefaultMiddleware,
+  combineReducers,
+} from '@reduxjs/toolkit';
+import cardReducer from '../reducers/cardSlice';
 
-export default configureStore({
-  reducer: {
+const store = configureStore({
+  reducer: combineReducers({
     card: cardReducer,
-  },
+  }),
+  middleware: getDefaultMiddleware(),
 });
+
+export default store;
