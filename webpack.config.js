@@ -16,12 +16,12 @@ module.exports = {
     host: 'localhost',
     port: 8080,
     // match the output path
-    contentBase: path.resolve(__dirname, 'dist'),
+    contentBase: path.resolve(__dirname, 'client'),
     // enable HMR on the devServer
     hot: true,
     watchContentBase: true,
     // match the output 'publicPath'
-    publicPath: '/',
+    publicPath: '/dist/',
     // fallback to root for other urls
     historyApiFallback: true,
 
