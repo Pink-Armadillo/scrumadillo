@@ -10,7 +10,7 @@ class Login extends React.Component {
   // check username and password with database
   loginFunction(username, password) {
     axios
-      .post('/login', { username, password })
+      .post('/server/login', { username, password })
       // assign user to state
       .then((user) => console.log(user))
       .catch((error) => console.log(error));
