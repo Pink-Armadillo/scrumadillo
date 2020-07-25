@@ -8,6 +8,10 @@ const cardsRouter = require('./cards-router.js');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+/** ROUTE FOR HANDLING CARDS FETCH REQUEST **/
+app.use('/cards', cardsRouter);
+
+/** SERVE STATIC ASSETS IN PRODUCTION MODE ONLY **/
 if (process.env.NODE_ENV === 'production') {
   app.use('/dist', express.static(path.join(__dirname, '../dist')));
 
@@ -16,10 +20,12 @@ if (process.env.NODE_ENV === 'production') {
   });
 }
 
+/** CATCH-ALL ROUTE HANDLER **/
 app.use('*', (req, res) => {
   return res.status(404).json('Error: page not found');
 });
 
+/** GLOBAL ERROR HANDLER **/
 app.use((err, req, res, next) => {
   if (err) return res.status(err.status).json(err);
   return res.status(500).json('Server error');
