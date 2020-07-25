@@ -1,7 +1,19 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-function App() {
-  return <div className="App">CANVAS GOES HERE</div>;
+import Canvas from './Canvas.jsx';
+
+class App extends Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    return (
+      <div>
+        <Canvas />
+      </div>
+    );
+  }
 }
 
 export default App;
