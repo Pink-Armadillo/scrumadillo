@@ -3,10 +3,19 @@ const app = express();
 const path = require('path');
 const bodyParser = require('body-parser');
 
+const userController = require('./user-controller.js');
 const cardsRouter = require('./cards-router.js');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+app.post('/login', userController.verifyUser, (req, res) => {
+  return res.status(200).json('logged in');
+});
+
+app.post('/signup', userController.createUser, (req, res) => {
+  return res.status(200).json(res.locals.user);
+});
 
 /** ROUTE FOR HANDLING CARDS FETCH REQUEST **/
 app.use('/cards', cardsRouter);
