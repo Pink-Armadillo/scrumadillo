@@ -1,4 +1,4 @@
-const { Card } = require('./models/card-models.js');
+const { Card } = require('./models/models.js');
 
 const cardsController = {};
 
