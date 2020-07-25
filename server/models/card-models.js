@@ -29,15 +29,15 @@ const cardSchema = new Schema({
 
 const Card = mongoose.model('card', cardSchema);
 
-Card.create({
-  name: 'Test',
-  todo: [
-    {
-      task: 'do something',
-      details: 'do something with details',
-      completed: false,
-    },
-  ],
-});
+// Card.create({
+//   name: 'Test',
+//   todo: [
+//     {
+//       task: 'do something',
+//       details: 'do something with details',
+//       completed: false,
+//     },
+//   ],
+// });
 
 module.exports = { Card };
