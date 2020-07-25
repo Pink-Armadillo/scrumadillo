@@ -1,21 +1,20 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
+//import { connect } from 'react-redux';
 
 import Card from './Card.jsx';
 
-class Board extends Conponent {
+class Board extends Component {
   constructor(props) {
     super(props);
   }
 
   render() {
-
-    return(
+    return (
       <div>
         <div>Board</div>
-        <Card/>
+        <Card />
       </div>
-    )
+    );
   }
 }
 

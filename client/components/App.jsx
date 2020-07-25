@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import Canvas from './Canvas.jsx';
+import Canvas from './Canvas';
 
 class App extends Component {
   constructor(props) {
@@ -10,6 +10,7 @@ class App extends Component {
   render() {
     return (
       <div>
+        test in app
         <Canvas />
       </div>
     );

@@ -1,26 +1,26 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
+//import { connect } from 'react-redux';
 // (stateful component)
-import Board from './Board.jsx';
+import Board from './Board';
 
-
-const mapStateToProps = state => ({});
-const mapDispatchToProps = dispatch => ({});
+// const mapStateToProps = state => ({});
+// const mapDispatchToProps = dispatch => ({});
 
 class Canvas extends Component {
   constructor(props) {
     super(props);
-  };
+  }
 
   render() {
-    return(
+    return (
       <div>
         <h1>SCRUMadillo logo placeholder</h1>
         <div>Canvas</div>
-        <Board/>
+        <Board />
       </div>
-    )
+    );
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Canvas);
+//  export default connect(mapStateToProps, mapDispatchToProps)(Canvas);
+export default Canvas;
