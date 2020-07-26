@@ -4,18 +4,9 @@
 // 927eba2bb044fded4ae56cf2e26cda3152d6135e
 
 import React from 'react';
-const axios = require('axios');
 
 class Login extends React.Component {
   // check username and password with database
-  loginFunction(username, password) {
-    axios
-      .post('/server/login', { username, password })
-      // assign user to state
-      .then((user) => console.log(user))
-      .catch((error) => console.log(error));
-  }
-
   render() {
     return (
       <form id="login-form">
@@ -43,7 +34,7 @@ class Login extends React.Component {
         </a>
         <button
           onClick={() => {
-            this.loginFunction(
+            this.props.login(
               document.getElementById('input-username').value,
               document.getElementById('input-password').value
             );
