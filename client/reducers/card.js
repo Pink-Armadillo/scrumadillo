@@ -1,6 +1,13 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { cardSlice, increment, addCard, selectCard, selectTitle, getCards } from './cardSlice';
+import {
+  cardSlice,
+  increment,
+  addCard,
+  selectCard,
+  selectTitle,
+} from './cardSlice';
+import { getCards } from './deckSlice';
 
 export function Test() {
   const dispatch = useDispatch();
