@@ -41,7 +41,7 @@ export function Test() {
       >
         TESTING
       </button>
-      <button
+      {/* <button
         onClick={() => {
           fetch('/server/cards')
             .then((resp) => resp.json())
@@ -51,7 +51,7 @@ export function Test() {
         }}
       >
         GET DECK
-      </button>
+      </button> */}
     </div>
   );
 }
