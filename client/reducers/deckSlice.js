@@ -14,5 +14,5 @@ export const deckSlice = createSlice({
 });
 
 export const { getCards } = deckSlice.actions;
-
+export const selectDeck = (state) => state;
 export default deckSlice.reducer;

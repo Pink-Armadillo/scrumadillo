@@ -1,18 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-export const deckSlice = createSlice({
-  name: 'Deck',
-  initialState: {
-    cards: [],
-  },
-
-  reducers: {
-    getCards: (state, action) => {
-      state.cards = action.payload;
-    },
-  },
-});
-
 export const cardSlice = createSlice({
   name: 'Board',
   initialState: {
