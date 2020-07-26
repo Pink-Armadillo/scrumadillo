@@ -12,13 +12,15 @@ const axios = require('axios');
 class Signup extends React.Component {
   signupFunction(username, password, confirm) {
     if (password === confirm) {
-      axios.post('/server/signup', { username, password }).then((user) => {
-        if (user) {
-          console.log('account created successfully');
-        } else {
-          console.log('unsuccess');
-        }
-      });
+      axios
+        .post('/server/signup', { username: username, password: password })
+        .then((user) => {
+          if (user) {
+            console.log('account created successfully');
+          } else {
+            console.log('unsuccess');
+          }
+        });
     } else {
       console.log('passwords not matched');
     }
@@ -39,13 +41,13 @@ class Signup extends React.Component {
         <input
           id="input-password"
           name="password"
-          type="text"
+          type="password"
           placeholder="Password"
         ></input>
         <input
           id="input-confirm-password"
           name="confirm-password"
-          type="text"
+          type="password"
           placeholder="Confirm"
         ></input>
         <br></br>
