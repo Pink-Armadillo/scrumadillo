@@ -10,20 +10,6 @@ const axios = require('axios');
 // app, router, axios
 
 class Signup extends React.Component {
-  signupFunction(username, password, confirm) {
-    if (password === confirm) {
-      axios.post('/server/signup', { username, password }).then((user) => {
-        if (user) {
-          console.log('account created successfully');
-        } else {
-          console.log('unsuccess');
-        }
-      });
-    } else {
-      console.log('passwords not matched');
-    }
-  }
-
   render() {
     return (
       <form id="signup-form">
@@ -39,19 +25,19 @@ class Signup extends React.Component {
         <input
           id="input-password"
           name="password"
-          type="text"
+          type="password"
           placeholder="Password"
         ></input>
         <input
           id="input-confirm-password"
           name="confirm-password"
-          type="text"
+          type="password"
           placeholder="Confirm"
         ></input>
         <br></br>
         <button
           onClick={() => {
-            signupFunction(
+            this.props.signup(
               document.getElementById('input-username').value,
               document.getElementById('input-password').value,
               document.getElementById('input-confirm-password').value

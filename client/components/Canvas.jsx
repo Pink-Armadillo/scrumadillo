@@ -16,6 +16,7 @@ class Canvas extends Component {
       <div>
         <h1>SCRUMadillo logo placeholder</h1>
         <div>Canvas</div>
+        <button onClick={this.props.logOut}>Log out</button>
         <Board />
       </div>
     );
