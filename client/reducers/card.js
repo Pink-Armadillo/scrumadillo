@@ -1,26 +1,20 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import {
-  cardSlice,
-  increment,
-  addCard,
-  selectCard,
-  selectTitle,
-} from './cardSlice';
+import { cardSlice, increment, addCard, selectCard, selectTitle, getCards } from './cardSlice';
 
 export function Test() {
   const dispatch = useDispatch();
   const { card } = useSelector(selectCard);
   const { title } = useSelector(selectTitle);
-  console.log('USE SELECTOR', useSelector(selectCard));
-  console.log('card destructured', card);
-  console.log('title', title);
+  // console.log('USE SELECTOR', useSelector(selectCard));
+  // console.log('card destructured', card);
+  // console.log('title', title);
 
-  console.log('drilling', card.cards[0].title);
-  // const dispatch = useDispatch();
-  // const [incrementAmount, setIncrementAmount] = useState('2');
-  console.log('card slice', cardSlice);
-  console.log('increment', increment);
+  // console.log('drilling', card.cards[0].title);
+  // // const dispatch = useDispatch();
+  // // const [incrementAmount, setIncrementAmount] = useState('2');
+  // console.log('card slice', cardSlice);
+  // console.log('increment', increment);
   // console.log('root', RootState);
 
   return (
@@ -39,6 +33,17 @@ export function Test() {
         }}
       >
         TESTING
+      </button>
+      <button
+        onClick={() => {
+          fetch('/server/cards')
+            .then((resp) => resp.json())
+            .then((data) => {
+              dispatch(getCards(data));
+            });
+        }}
+      >
+        GET DECK
       </button>
     </div>
   );
