@@ -4,6 +4,7 @@ const path = require('path');
 const bodyParser = require('body-parser');
 
 const userController = require('./user-controller.js');
+const githubController = require('./github-controller.js');
 const cardsRouter = require('./cards-router.js');
 const main = express.Router();
 
@@ -11,6 +12,10 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use('/server', main);
+
+main.get('/github', githubController.authorize, (req, res) => {
+  return res.status(200).json({ code: res.locals.code });
+});
 
 main.post('/login', userController.verifyUser, (req, res) => {
   return res.status(200).json('logged in');
