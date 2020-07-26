@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const bodyParser = require('body-parser');
+<<<<<<< HEAD
 const userController = require('./user-controller.js');
 const cardsRouter = require('./cards-router.js');
 const main = express.Router();
@@ -16,6 +17,29 @@ main.post('/signup', userController.createUser, (req, res) => {
 });
 /** ROUTE FOR HANDLING CARDS FETCH REQUEST **/
 main.use('/cards', cardsRouter);
+=======
+
+const userController = require('./user-controller.js');
+const cardsRouter = require('./cards-router.js');
+const main = express.Router();
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use('/server', main);
+
+main.post('/login', userController.verifyUser, (req, res) => {
+  return res.status(200).json('logged in');
+});
+
+main.post('/signup', userController.createUser, (req, res) => {
+  return res.status(200).json(res.locals.user);
+});
+
+/** ROUTE FOR HANDLING CARDS FETCH REQUEST **/
+main.use('/cards', cardsRouter);
+
+>>>>>>> master
 /** SERVE STATIC ASSETS IN PRODUCTION MODE ONLY **/
 if (process.env.NODE_ENV === 'production') {
   app.use('/dist', express.static(path.join(__dirname, '../dist')));

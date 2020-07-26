@@ -29,7 +29,11 @@ module.exports = {
 
     headers: { 'Access-Control-Allow-Origin': '*' },
     proxy: {
+<<<<<<< HEAD
       '/server/': {
+=======
+      '/server': {
+>>>>>>> master
         target: 'http://localhost:3000/',
         secure: false,
       },
