@@ -1,19 +1,45 @@
 import React, { useState } from 'react';
-import { connect } from 'react-redux';
 import { useSelector, useDispatch } from 'react-redux';
-import { cardSlice, increment, selectCard } from './cardSlice';
-import { RootState } from '../store/store';
+import {
+  cardSlice,
+  increment,
+  addCard,
+  selectCard,
+  selectTitle,
+} from './cardSlice';
 
-export function Card() {
+export function Test() {
   const dispatch = useDispatch();
+  const { card } = useSelector(selectCard);
+  const { title } = useSelector(selectTitle);
+  console.log('USE SELECTOR', useSelector(selectCard));
+  console.log('card destructured', card);
+  console.log('title', title);
 
-  //const { cardSlice } = useSelector((state: RootState) => state.card);
-
+  console.log('drilling', card.cards[0].title);
   // const dispatch = useDispatch();
   // const [incrementAmount, setIncrementAmount] = useState('2');
   console.log('card slice', cardSlice);
   console.log('increment', increment);
-  console.log('root', RootState);
+  // console.log('root', RootState);
 
-  return <div>{cardSlice.initialState}</div>;
+  return (
+    <div>
+      <h1>{card.cards[0].title}</h1>
+      <h2>{card.cards[0].todos[0].name}</h2>
+      <h3>{title}</h3>
+      <button onClick={() => dispatch(increment())}>increment</button>
+      <br></br>
+      <input id="stateTest" type="text" name="search"></input>
+      <button
+        onClick={() => {
+          let value = document.querySelector('#stateTest').value;
+          console.log('will this update', card.cards);
+          dispatch(addCard(value));
+        }}
+      >
+        TESTING
+      </button>
+    </div>
+  );
 }

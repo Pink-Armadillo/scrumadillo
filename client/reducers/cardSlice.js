@@ -1,5 +1,18 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+export const deckSlice = createSlice({
+  name: 'Deck',
+  initialState: {
+    cards: [],
+  },
+
+  reducers: {
+    getCards: (state, action) => {
+      state.cards = action.payload;
+    },
+  },
+});
+
 export const cardSlice = createSlice({
   name: 'Board',
   initialState: {
@@ -21,12 +34,20 @@ export const cardSlice = createSlice({
   },
   reducers: {
     increment: (state) => {
-      state.value += 1;
+      state.current += 1;
+    },
+    addCard: (state, action) => {
+      state.cards.push(action.payload);
+    },
+    complete: (state) => {
+      state.completed = true;
     },
   },
 });
 
-export const { increment } = cardSlice.actions;
+export const { increment, addCard, complete } = cardSlice.actions;
+
 export const selectCard = (state) => state;
+export const selectTitle = (state) => state.card.cards[0].title;
 
 export default cardSlice.reducer;

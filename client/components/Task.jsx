@@ -1,9 +1,9 @@
 import React from 'react';
-import { Card } from '../reducers/card';
+import { Test } from '../reducers/card';
 const Task = () => {
   return (
     <div>
-      <Card />
+      <Test />
       test in task
     </div>
   );
