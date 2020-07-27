@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { getCards } from './deckSlice';
 
-export function DeckTest() {
+export function Deck() {
   const dispatch = useDispatch();
 
   return (

@@ -31,7 +31,7 @@ class Login extends React.Component {
           }}
         >
           <img
-            src="../logoDarkGray.png"
+            src="../assets/icon.png"
             style={{ width: '300px', marginBottom: '15px' }}
           ></img>
           <br></br>

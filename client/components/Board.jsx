@@ -2,12 +2,14 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
 //import { connect } from 'react-redux';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Card from './Card.jsx';
+import { getCards, selectDeck } from '../reducers/deckSlice';
+import { getAll, selectCard, increment } from '../reducers/cardSlice';
 
-const useStyles = theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
   },
@@ -16,23 +18,50 @@ const useStyles = theme => ({
     textAlign: 'center',
     color: theme.palette.text.secondary,
   },
-});
+}));
 
-class Board extends Component {
-  constructor(props) {
-    super(props);
+const Board = (props) => {
+  const dispatch = useDispatch();
+  const { card } = useSelector(selectCard);
+  const current = card.current;
+  console.log('current', current);
+
+  const cardsArr = [];
+  if (props.id === 'stack') {
+    for (let i = current + 1; i < card.cards.length; i++) {
+      cardsArr.push(<Card key={i} name={card.cards[i].name} />);
+    }
   }
 
-  render() {
-    const { classes } = this.props;
-    return (
+  if (props.id === 'inProgress' && card.cards[current]) {
+    console.log('in if', card.cards[current]);
+    cardsArr.push(
       <div>
-        <Grid item xs={12}>
-            <Card id={this.props.id}/>
-        </Grid>
+        <Card
+          key={current}
+          name={card.cards[current].name}
+          url={card.cards[current].url}
+          card={card.cards[current]}
+        />
+        <button onClick={() => dispatch(increment())}></button>
       </div>
     );
   }
-}
 
-export default withStyles(useStyles)(Board);
+  if (props.id === 'complete') {
+    for (let i = 0; i < current; i++) {
+      cardsArr.push(<Card key={i} name={card.cards[i].name} />);
+    }
+  }
+
+  const classes = useStyles();
+  return (
+    <div>
+      <Grid item xs={12}>
+        {cardsArr}
+      </Grid>
+    </div>
+  );
+};
+
+export default Board;
