@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 //import { connect } from 'react-redux';
 
 import Task from './Task';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Accordion from '@material-ui/core/Accordion';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
@@ -15,7 +15,7 @@ import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import ListItemText from '@material-ui/core/ListItemText';
 import Paper from '@material-ui/core/Paper';
 
-const useStyles = theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
   },
@@ -34,16 +34,12 @@ const useStyles = theme => ({
   box: {
     marginRight: 'auto',
   },
-});
+}));
 
-class Card extends Component {
-  constructor(props) {
-    super(props);
-  }
+const Card = (props) => {
 
-  render() {
-    const { classes } = this.props;
-    if (this.props.id === 'inProgress') {
+    const classes = useStyles();
+    if (props.id === 'inProgress') {
       return (
         <div className={classes.root}>
 
@@ -58,8 +54,8 @@ class Card extends Component {
             </AccordionSummary>
             <AccordionDetails>
               <List dense className={classes.root}>
+{/* map tasks here */}
                 <ListItem>
-
                   <Task className={classes.box} />
                 </ListItem>
               </List>
@@ -77,6 +73,6 @@ class Card extends Component {
       );
     }
   }
-}
 
-export default withStyles(useStyles)(Card);
+
+export default Card;

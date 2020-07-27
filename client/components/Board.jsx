@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
-//import { connect } from 'react-redux';
-import { withStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
+import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Card from './Card.jsx';
 
-const useStyles = theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
   },
@@ -16,23 +14,20 @@ const useStyles = theme => ({
     textAlign: 'center',
     color: theme.palette.text.secondary,
   },
-});
+}));
 
-class Board extends Component {
-  constructor(props) {
-    super(props);
-  }
+const Board = (props) => {
 
-  render() {
-    const { classes } = this.props;
+    const classes = useStyles();
     return (
       <div>
         <Grid item xs={12}>
-            <Card id={this.props.id}/>
+          {/* map over cards array */}
+            <Card id={props.id}/>
         </Grid>
       </div>
     );
   }
-}
 
-export default withStyles(useStyles)(Board);
+
+export default Board;
