@@ -6,6 +6,10 @@ import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 import { IconButton } from '@material-ui/core';
 
+import { useSelector, useDispatch } from 'react-redux';
+import { getCards, selectDeck } from '../reducers/deckSlice';
+import { getAll, selectCard } from '../reducers/cardSlice';
+
 const useStyles = makeStyles(() => ({
   root: {
     flexGrow: 1,
@@ -20,6 +24,8 @@ const useStyles = makeStyles(() => ({
 
 const NavBar = (props) => {
   const classes = useStyles();
+  const dispatch = useDispatch();
+  const { deck } = useSelector(selectDeck);
   return (
     <div>
       <AppBar position="static" color="transparent">
@@ -27,6 +33,19 @@ const NavBar = (props) => {
           <IconButton edge="start" className={classes.menuButton}>
             <img src={logo} style={{ width: 165, height: 80 }}></img>
           </IconButton>
+          <button
+            onClick={() => {
+              fetch('/server/cards')
+                .then((resp) => resp.json())
+                .then((data) => {
+                  dispatch(getCards(data));
+                  dispatch(getAll(data));
+                });
+            }}
+          >
+            Add Cards to Board
+          </button>
+
           <Button className={classes.button} onClick={props.logout}>
             Logout
           </Button>

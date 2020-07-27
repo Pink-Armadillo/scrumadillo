@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 // (stateful component)
 import Board from './Board';
 import NavBar from './NavBar';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
@@ -11,7 +11,7 @@ import Typography from '@material-ui/core/Typography';
 // const mapStateToProps = state => ({});
 // const mapDispatchToProps = dispatch => ({});
 
-const useStyles = (theme) => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
   },
@@ -26,24 +26,20 @@ const useStyles = (theme) => ({
     fontWeight: theme.typography.fontWeightBold,
     fontFamily: 'Roboto',
   },
-});
+}));
 
-class Canvas extends Component {
-  constructor(props) {
-    super(props);
-  }
-  render() {
-    const { classes } = this.props;
+const Canvas = (props) => {
+    const classes = useStyles();
     return (
       <div className={classes.root}>
         <Grid container spacing={3}>
           <Grid item xs={12}>
-            <NavBar logout={this.props.logout} />
+            <NavBar logout={props.logout} />
           </Grid>
           <Grid item xs={6} sm={3}>
             <Paper className={classes.paper}>
               <Typography className={classes.heading}>To Do:</Typography>
-              <Board id="todo" />
+              <Board id="stack" />
             </Paper>
           </Grid>
           <Grid item xs={6} sm={3}>
@@ -62,7 +58,7 @@ class Canvas extends Component {
       </div>
     );
   }
-}
+
 
 //  export default connect(mapStateToProps, mapDispatchToProps)(Canvas);
-export default withStyles(useStyles)(Canvas);
+export default Canvas;
