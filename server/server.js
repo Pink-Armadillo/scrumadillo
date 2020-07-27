@@ -11,14 +11,37 @@ const boardController = require('./board-controller.js');
 const cardsRouter = require('./cards-router.js');
 const main = express.Router();
 
+const url = require('url');
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use('/server', main);
 
+
+// main.get(
+//   '/github',
+//   githubController.authorize,
+//   githubController.token,
+//   (req, res) => {
+//     // return res.status(200).json(res.locals.authorized);
+//     // // redirect("http://localhost:3000/")
+//     // // .json(res.locals.authorized);
+//     res.redirect(url.format({
+//       pathname: "http://localhost:8080/",
+//       query: {
+//         username: res.locals.authorized.username,
+//       }
+//     }));
+//   }
+// );
+
 main.get('/github', githubController.authorize, githubController.token, (req, res) => {
   return res.status(200).json(res.locals.authorized);
 });
+
+
+
 
 main.post('/login', userController.verifyUser, (req, res) => {
   return res.status(200).json(res.locals.user);
