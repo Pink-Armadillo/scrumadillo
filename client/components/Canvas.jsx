@@ -20,7 +20,6 @@ const useStyles = makeStyles((theme) => ({
     fontSize: theme.typography.pxToRem(15),
     color: '#363738',
     fontWeight: theme.typography.fontWeightBold,
-    fontFamily: 'Roboto',
   },
 }));
 
