@@ -34,9 +34,30 @@ githubController.token = (req, res, next) => {
     .set('User-Agent', 'test')
     .then((result) => {
       // redirect to root with user info from body
-      const userInfo = result.body;
-      res.locals.authorized = userInfo;
-      return next();
+      // const userInfo = result.body;
+      const username = result.body.login;
+      const password = result.body.id;
+      User.findOne({ username: username, password: password }, (error, user) => {
+        if (error) {
+          return next(error)
+        } else {
+          if (user === null) {
+            User.create({ username: username, password: password }, (err, us) => {
+              if (err) {
+                return next(err)
+              } else {
+                res.locals.authorized = us;
+                console.log('usercreated')
+                return next();
+              }
+            })
+          } else {
+            res.locals.authorized = user 
+            console.log('usercreated2')
+            return next();
+          }
+        }
+      })
     })
     .catch((err) => {
       return next(err);

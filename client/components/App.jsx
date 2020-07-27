@@ -4,6 +4,10 @@ const axios = require('axios');
 
 import Canvas from './Canvas';
 
+import { BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+
+import {NavBar} from './NavBar'
+
 //import { useDispatch, useSelector } from 'react-redux';
 
 // merge resolved Sunday 5:46 PM
@@ -16,11 +20,15 @@ class App extends Component {
     super(props);
     this.state = {
       loggedIn: false,
+      showSignUp: false
     };
     this.loginFunction = this.loginFunction.bind(this);
-    this.signupFunction = this.signupFunction.bind(this);
     this.logOut = this.logOut.bind(this);
+    this.signupFunction = this.signupFunction.bind(this);
+    this.github = this.github.bind(this);
+    // this.showSignUpFunction = this.showSignUpFunction.bind(this)
   }
+
 
   logOut() {
     this.setState({ loggedIn: false });
@@ -44,6 +52,8 @@ class App extends Component {
           if (user) {
             console.log('account created successfully');
             this.setState({ loggedIn: true });
+            alert('account created successfully')
+            window.location.href="http://localhost:8080/"
           } else {
             console.log('unsuccess');
           }
@@ -52,6 +62,23 @@ class App extends Component {
       console.log('passwords not matched');
     }
   }
+
+  github() {
+    if (true) {
+      console.log('github')
+      axios.post("https://cors-anywhere.herokuapp.com/https://github.com/login/oauth/authorize", { params: { client_id: 'fade47f049a7b9f4a3dc'}, headers: {"Access-Control-Allow-Origin": "*" }})
+      .then(data => console.log('dataaa', data))
+      .catch(err => console.log('errrr', err))
+    }
+    
+  }
+
+
+  // showSignUpFunction() {
+
+  //   this.setState({ showSignUp: true });
+  //   console.log('in show sign up')
+  // }
 
   // componentDidMount() {
   //   fetch('/server/cards')
@@ -63,14 +90,22 @@ class App extends Component {
     let main;
     if (this.state.loggedIn === true) {
       main = <Canvas logout={this.logOut} />;
-    } else {
-      main = <Login login={this.loginFunction} />;
-    }
+    } 
+    else if (this.state.loggedIn === false) {
+      main = <Login login={this.loginFunction} github={this.github} />;
+    } 
     return (
-      <div>
-        {main}
-        {/* <Canvas /> */}
-      </div>
+        <div className="App"> 
+      <Router>
+          <Switch>
+            
+            <Route exact path="/:username" render={ () => <Login login={this.loginFunction }/>} />
+            <Route exact path="/" render={() => main}/>
+            <Route path="/signup" render={ () => <Signup signup={this.signupFunction }/>} />
+          </Switch>
+      </Router>
+        </div>
+
     );
   }
 }
