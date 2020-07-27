@@ -4,6 +4,7 @@ const axios = require('axios');
 
 import Canvas from './Canvas';
 
+
 //import { useDispatch, useSelector } from 'react-redux';
 
 // merge resolved Sunday 5:46 PM
@@ -60,13 +61,14 @@ class App extends Component {
   // }
 
   render() {
-    let main;
-    if (this.state.loggedIn === false) {
-      main = <Login login={this.loginFunction} />;
-    } else {
-      main = <Canvas logout={this.logOut} />;
-    }
-    return <div>{main}</div>;
+
+    return (
+      <div>
+        <Canvas />
+      </div>
+    );
+
+    
   }
 }
 
