@@ -1,4 +1,6 @@
 import React from 'react';
+import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 class Login extends React.Component {
   // check username and password with database
@@ -66,6 +68,7 @@ class Login extends React.Component {
             }}
           ></input>
           <br></br>
+          {/* <Link to="/"> */}
           <button
             onClick={(event) => {
               event.preventDefault();
@@ -88,7 +91,33 @@ class Login extends React.Component {
           >
             Login
           </button>
+          {/* </Link> */}
+          <Link to="/signup">
+          <button
+            style={{
+              width: '120px',
+              height: '40px',
+              marginTop: '10px',
+              marginBottom: '25px',
+              border: 'solid 1px #f9f9f9',
+              backgroundColor: '#9cdaf0',
+              fontFamily: 'sans-serif',
+              fontWeight: 'bold',
+              borderRadius: '4px',
+            }}
+          >
+            Sign Up
+          </button>
+          </Link>
           <br></br>
+          {/*  */}
+          {/* <button onClick={ (e) => {e.preventDefault(); console.log('for github'); this.props.github()}}>
+            <img
+              id="github-logo"
+              src="https://www.backblaze.com/blog/wp-content/uploads/2018/05/github-logo.png"
+              style={{ width: '250px' }}
+            />
+          </button> */}
           <a href="https://github.com/login/oauth/authorize?client_id=fade47f049a7b9f4a3dc">
             <img
               id="github-logo"
