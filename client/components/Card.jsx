@@ -67,9 +67,30 @@ const Card = (props) => {
   //     <Paper className={classes.paper}>{props.name}</Paper>
   //   </div>;
   else {
+    const todoArray = [];
+    if (props.card) {
+      let todo = props.card.todo;
+      console.log('in cards', props.card.todo);
+
+      for (let i = 0; i < todo.length; i += 1) {
+        todoArray.push(
+          <div>
+            <li>{todo[i].taskName}</li>
+            <li>{todo[i].details} </li>
+
+            <li>{todo[i].completed}</li>
+          </div>
+        );
+      }
+    }
+
     return (
       <div className={classes.root}>
-        <Paper className={classes.paper}>{props.name}</Paper>
+        <Paper className={classes.paper}>
+          {props.name}
+          {props.url}
+          {todoArray}
+        </Paper>
       </div>
     );
   }

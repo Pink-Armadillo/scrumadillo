@@ -7,7 +7,7 @@ import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Card from './Card.jsx';
 import { getCards, selectDeck } from '../reducers/deckSlice';
-import { getAll, selectCard } from '../reducers/cardSlice';
+import { getAll, selectCard, increment } from '../reducers/cardSlice';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -33,9 +33,19 @@ const Board = (props) => {
     }
   }
 
-  if (props.id === 'inProgress' && card.cards[0]) {
+  if (props.id === 'inProgress' && card.cards[current]) {
     console.log('in if', card.cards[current]);
-    cardsArr.push(<Card key={current} name={card.cards[current].name} />);
+    cardsArr.push(
+      <div>
+        <Card
+          key={current}
+          name={card.cards[current].name}
+          url={card.cards[current].url}
+          card={card.cards[current]}
+        />
+        <button onClick={() => dispatch(increment())}></button>
+      </div>
+    );
   }
 
   if (props.id === 'complete') {

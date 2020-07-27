@@ -34,6 +34,7 @@ const NavBar = (props) => {
             <img src={logo} style={{ width: 165, height: 80 }}></img>
           </IconButton>
           <button
+            id="getCards"
             onClick={() => {
               fetch('/server/cards')
                 .then((resp) => resp.json())
@@ -41,6 +42,7 @@ const NavBar = (props) => {
                   dispatch(getCards(data));
                   dispatch(getAll(data));
                 });
+              document.querySelector('#getCards').style.display = 'none';
             }}
           >
             Add Cards to Board
