@@ -1,6 +1,4 @@
-import React, { Component } from 'react';
-//import { connect } from 'react-redux';
-// (stateful component)
+import React from 'react';
 import Board from './Board';
 import NavBar from './NavBar';
 import { makeStyles } from '@material-ui/core/styles';
@@ -8,8 +6,6 @@ import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 
-// const mapStateToProps = state => ({});
-// const mapDispatchToProps = dispatch => ({});
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -60,5 +56,4 @@ const Canvas = (props) => {
   }
 
 
-//  export default connect(mapStateToProps, mapDispatchToProps)(Canvas);
 export default Canvas;
