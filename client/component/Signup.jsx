@@ -10,42 +10,54 @@ const axios = require('axios');
 // app, router, axios
 
 class Signup extends React.Component {
-  signupFunction(username, password, confirm) {
-    if (password === confirm) {
-      axios.post('/server/signup', { username, password }).then((user) => {
-        if (user) {
-          console.log('account created successfully');
-        } else {
-          console.log('unsuccess');
-        }
-      });
-    } else {
-      console.log('passwords not matched');
-    }
-  }
-
   render() {
     return (
       <form id="signup-form">
         <h2>Create Account</h2>
         <br></br>
-        <input id="input-username" name="username" type="text" placeholder="Username"></input>
+        <input
+          id="input-username"
+          name="username"
+          type="text"
+          placeholder="Username"
+        ></input>
         <br></br>
-        <input id="input-password" name="password" type="text" placeholder="Password"></input>
-        <input id="input-confirm-password" name="confirm-password" type="text" placeholder="Confirm"></input>
+        <input
+          id="input-password"
+          name="password"
+          type="password"
+          placeholder="Password"
+        ></input>
+        <input
+          id="input-confirm-password"
+          name="confirm-password"
+          type="password"
+          placeholder="Confirm"
+        ></input>
         <br></br>
         <button
-          onClick={signupFunction(
-            document.getElementById('input-username').value,
-            document.getElementById('input-password').value,
-            document.getElementById('input-confirm-password').value
-          )}
+          onClick={() => {
+            this.props.signup(
+              document.getElementById('input-username').value,
+              document.getElementById('input-password').value,
+              document.getElementById('input-confirm-password').value
+            );
+          }}
         >
           Sign Up
         </button>
         <div>
+          <a
+            href="
+                https://github.com/login/oauth/authorize?client_id=fade47f049a7b9f4a3dc"
+          >
+            Github
+          </a>
           <button>
-            <img id="github-logo" src="https://www.backblaze.com/blog/wp-content/uploads/2018/05/github-logo.png" />
+            <img
+              id="github-logo"
+              src="https://www.backblaze.com/blog/wp-content/uploads/2018/05/github-logo.png"
+            />
           </button>
           <button>
             <img
