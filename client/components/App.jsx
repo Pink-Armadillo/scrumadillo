@@ -31,6 +31,7 @@ class App extends Component {
       .post('/server/login', { username, password })
       // assign user to state
       .then((user) => {
+        console.log('logged in');
         this.setState({ loggedIn: true });
       })
       .catch((error) => console.log(error));
@@ -66,12 +67,7 @@ class App extends Component {
     } else {
       main = <Canvas logout={this.logOut} />;
     }
-    return (
-      <div>
-        test in app
-        {main}
-      </div>
-    );
+    return <div>{main}</div>;
   }
 }
 
