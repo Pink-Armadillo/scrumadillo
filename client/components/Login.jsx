@@ -54,7 +54,7 @@ class Login extends React.Component {
           <input
             id="input-password"
             name="password"
-            type="text"
+            type="password"
             placeholder="Password"
             style={{
               marginBottom: '10px',
