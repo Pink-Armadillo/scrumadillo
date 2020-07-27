@@ -4,21 +4,8 @@ export const cardSlice = createSlice({
   name: 'Board',
   initialState: {
     current: 0, //index of current card
-    deck: [],
-    cards: [
-      {
-        cardId: 1, // card Id from databas
-        title: 'Webpack',
-        todos: [
-          { name: 'run npm init', completed: false },
-          {
-            name: 'create webpack config file',
-
-            completed: true,
-          },
-        ],
-      },
-    ],
+    username: '',
+    cards: [],
   },
   reducers: {
     increment: (state) => {
@@ -30,13 +17,21 @@ export const cardSlice = createSlice({
     complete: (state) => {
       state.completed = true;
     },
-    getCards: (state, action) => {
-      state.deck = action.payload;
+    getAll: (state, action) => {
+      state.cards = action.payload;
+    },
+    assignUser: (state, action) => {
+      state.username = action.payload.username;
+    },
+    newState: (state, action) => {
+      state.username = action.payload.username;
+      state.current = action.payload.current;
+      state.cards = action.payload.cards;
     },
   },
 });
 
-export const { increment, addCard, complete, getCards } = cardSlice.actions;
+export const { increment, addCard, getAll, complete, getCards, assignUser, newState } = cardSlice.actions;
 
 export const selectCard = (state) => state;
 export const selectTitle = (state) => state.card.cards[0].title;

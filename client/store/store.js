@@ -1,8 +1,4 @@
-import {
-  configureStore,
-  getDefaultMiddleware,
-  combineReducers,
-} from '@reduxjs/toolkit';
+import { configureStore, getDefaultMiddleware, combineReducers } from '@reduxjs/toolkit';
 import cardReducer from '../reducers/cardSlice';
 import deckReducer from '../reducers/deckSlice';
 import loginReducer from '../reducers/loginSlice';
@@ -10,13 +6,14 @@ import loginReducer from '../reducers/loginSlice';
 const logger = (store) => (next) => (action) => {
   console.log('dispatching', action);
   let result = next(action);
-  console.log('next state', store.getState());
+  console.log('next state', store.getState().card);
   return result;
 };
 
 const updateBoardServer = (store) => (next) => (action) => {
   let payload = store.getState();
-  fetch('/server/cards', {
+  console.log('payload.card -> ', payload);
+  fetch('/server/boardState', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
