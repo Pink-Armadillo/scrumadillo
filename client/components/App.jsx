@@ -61,13 +61,14 @@ class App extends Component {
   // }
 
   render() {
-    let main;
-    if (this.state.loggedIn === false) {
-      main = <Login login={this.loginFunction} />;
-    } else {
-      main = <Canvas logout={this.logOut} />;
-    }
-    return <div>{main}</div>;
+
+    return (
+      <div>
+        <Canvas />
+      </div>
+    );
+
+    
   }
 }
 
