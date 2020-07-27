@@ -15,6 +15,8 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      username: null,
+      userId: null,
       loggedIn: false,
     };
     this.loginFunction = this.loginFunction.bind(this);
@@ -30,24 +32,22 @@ class App extends Component {
       .post('/server/login', { username, password })
       // assign user to state
       .then((user) => {
-        console.log('logged in');
-        this.setState({ loggedIn: true });
+        console.log('logged in -> ', user.data);
+        this.setState({ loggedIn: true, username: user.data.username, userId: user.data._id });
       })
       .catch((error) => console.log(error));
   }
 
   signupFunction(username, password, confirm) {
     if (password === confirm) {
-      axios
-        .post('/server/signup', { username: username, password: password })
-        .then((user) => {
-          if (user) {
-            console.log('account created successfully');
-            this.setState({ loggedIn: true });
-          } else {
-            console.log('unsuccess');
-          }
-        });
+      axios.post('/server/signup', { username: username, password: password }).then((user) => {
+        if (user) {
+          console.log('account created successfully');
+          this.setState({ loggedIn: true, username: user.username, userId: user._id });
+        } else {
+          console.log('unsuccess');
+        }
+      });
     } else {
       console.log('passwords not matched');
     }
@@ -62,7 +62,7 @@ class App extends Component {
   render() {
     let main;
     if (this.state.loggedIn === true) {
-      main = <Canvas logout={this.logOut} />;
+      main = <Canvas logout={this.logOut} username={this.state.username} userId={this.state.userId} />;
     } else {
       main = <Login login={this.loginFunction} />;
     }

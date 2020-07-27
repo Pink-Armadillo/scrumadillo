@@ -27,6 +27,7 @@ const cardSchema = new Schema({
 const Card = mongoose.model('card', cardSchema);
 const boardSchema = new Schema({
   current: Number,
+  username: String,
   cards: [
     {
       name: String,

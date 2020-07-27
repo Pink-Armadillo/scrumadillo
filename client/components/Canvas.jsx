@@ -5,8 +5,10 @@ import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-
-
+import { useDispatch } from 'react-redux';
+import { getLogin } from '../reducers/loginSlice';
+import { assignUser, newState } from '../reducers/cardSlice';
+import { useEffect } from 'react';
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -24,7 +26,36 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Canvas = (props) => {
+  const dispatch = useDispatch();
+  console.log('props in Canvas -> ', props);
+  dispatch(
+    getLogin({
+      username: props.username,
+      userId: props.userId,
+    })
+  );
+  dispatch(
+    assignUser({
+      username: props.username,
+    })
+  );
+
+  useEffect(() => {
+    fetch(`/server/boardState/${props.username}`)
+      .then((response) => response.json())
+      .then((data) =>
+        dispatch(
+          newState({
+            username: data.username,
+            current: data.current,
+            cards: data.cards,
+          })
+        )
+      );
+  });
+
   const classes = useStyles();
+
   return (
     <div className={classes.root}>
       <Grid container spacing={3}>
