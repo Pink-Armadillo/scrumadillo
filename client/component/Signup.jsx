@@ -1,8 +1,3 @@
-// Client ID
-// fade47f049a7b9f4a3dc
-// Client Secret
-// 927eba2bb044fded4ae56cf2e26cda3152d6135e
-
 import React from 'react';
 const axios = require('axios');
 
