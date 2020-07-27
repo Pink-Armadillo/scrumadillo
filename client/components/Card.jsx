@@ -37,42 +37,63 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Card = (props) => {
-
-    const classes = useStyles();
-    if (props.id === 'inProgress') {
-      return (
-        <div className={classes.root}>
-
-          <Accordion>
-            <AccordionSummary
-              expandIcon={<ExpandMoreIcon />}
-              aria-controls="panel1a-content"
-              id="panel1a-header"
-            >
-              <Typography className={classes.heading}>Card w Tasks
-          </Typography>
-            </AccordionSummary>
-            <AccordionDetails>
-              <List dense className={classes.root}>
-{/* map tasks here */}
-                <ListItem>
-                  <Task className={classes.box} />
-                </ListItem>
-              </List>
-
-            </AccordionDetails>
-          </Accordion>
-        </div>
-      );
-    } else {
-      return (
-        <div className={classes.root}>
-
-          <Paper className={classes.paper}>Card</Paper>
-        </div>
-      );
-    }
+  const classes = useStyles();
+  console.log(props);
+  if (props.id === 'inProgress') {
+    return (
+      <div className={classes.root}>
+        <Accordion>
+          <AccordionSummary
+            expandIcon={<ExpandMoreIcon />}
+            aria-controls="panel1a-content"
+            id="panel1a-header"
+          >
+            <Typography className={classes.heading}>Card w Tasks</Typography>
+          </AccordionSummary>
+          <AccordionDetails>
+            <List dense className={classes.root}>
+              {/* map tasks here */}
+              <ListItem>
+                <Task className={classes.box} />
+              </ListItem>
+            </List>
+          </AccordionDetails>
+        </Accordion>
+      </div>
+    );
   }
+  // } else if (props.id === 'stack') {
+  //   <div className={classes.root}>
+  //     <Paper className={classes.paper}>{props.name}</Paper>
+  //   </div>;
+  else {
+    const todoArray = [];
+    if (props.card) {
+      let todo = props.card.todo;
+      console.log('in cards', props.card.todo);
 
+      for (let i = 0; i < todo.length; i += 1) {
+        todoArray.push(
+          <div>
+            <li>{todo[i].taskName}</li>
+            <li>{todo[i].details} </li>
+
+            <li>{todo[i].completed}</li>
+          </div>
+        );
+      }
+    }
+
+    return (
+      <div className={classes.root}>
+        <Paper className={classes.paper}>
+          {props.name}
+          {props.url}
+          {todoArray}
+        </Paper>
+      </div>
+    );
+  }
+};
 
 export default Card;

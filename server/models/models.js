@@ -15,10 +15,12 @@ const Schema = mongoose.Schema;
 const cardSchema = new Schema({
   name: String,
   url: String,
+  completed: Boolean,
   todo: [
     {
       taskName: String,
       details: String,
+      completed: Boolean,
     },
   ],
 });
@@ -27,11 +29,12 @@ const boardSchema = new Schema({
   current: Number,
   cards: [
     {
-      cardName: String,
+      name: String,
+      url: String,
       completed: Boolean,
-      todos: [
+      todo: [
         {
-          todoName: String,
+          taskName: String,
           details: String,
           completed: Boolean,
         },

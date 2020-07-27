@@ -25,35 +25,34 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Canvas = (props) => {
-    const classes = useStyles();
-    return (
-      <div className={classes.root}>
-        <Grid container spacing={3}>
-          <Grid item xs={12}>
-            <NavBar logout={props.logout} />
-          </Grid>
-          <Grid item xs={6} sm={3}>
-            <Paper className={classes.paper}>
-              <Typography className={classes.heading}>To Do:</Typography>
-              <Board id="stack" />
-            </Paper>
-          </Grid>
-          <Grid item xs={6} sm={3}>
-            <Paper className={classes.paper}>
-              <Typography className={classes.heading}>In Progress:</Typography>
-              <Board id="inProgress" />
-            </Paper>
-          </Grid>
-          <Grid item xs={6} sm={3}>
-            <Paper className={classes.paper}>
-              <Typography className={classes.heading}>Completed:</Typography>
-              <Board id="complete" />
-            </Paper>
-          </Grid>
+  const classes = useStyles();
+  return (
+    <div className={classes.root}>
+      <Grid container spacing={3}>
+        <Grid item xs={12}>
+          <NavBar logout={props.logout} />
         </Grid>
-      </div>
-    );
-  }
-
+        <Grid item xs={6} sm={3}>
+          <Paper className={classes.paper}>
+            <Typography className={classes.heading}>To Do:</Typography>
+            <Board id="stack" />
+          </Paper>
+        </Grid>
+        <Grid item xs={6}>
+          <Paper className={classes.paper}>
+            <Typography className={classes.heading}>In Progress:</Typography>
+            <Board id="inProgress" />
+          </Paper>
+        </Grid>
+        <Grid item xs={6} sm={3}>
+          <Paper className={classes.paper}>
+            <Typography className={classes.heading}>Completed:</Typography>
+            <Board id="complete" />
+          </Paper>
+        </Grid>
+      </Grid>
+    </div>
+  );
+};
 
 export default Canvas;
