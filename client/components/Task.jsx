@@ -1,4 +1,5 @@
 import React from 'react';
+
 // const [checked, setChecked] = React.useState(true);
 
 // const handleChange = (event) => {
@@ -19,5 +20,20 @@ class Task extends React.Component {
     );
   }
 }
+
+<!-- import { Test } from '../reducers/card';
+import { LoginTest } from '../reducers/login';
+import { DeckTest } from '../reducers/deck';
+const Task = () => {
+  return (
+    <div>
+      <Test />
+      <LoginTest />
+      <DeckTest />
+      test in task
+    </div>
+  );
+}; -->
+
 
 export default Task;

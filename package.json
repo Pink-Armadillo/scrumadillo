@@ -4,9 +4,9 @@
   "description": "Life changing app development boilerplate",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon server/server.js",
-    "build": "NODE_ENV=production webpack",
-    "dev": "concurrently \"cross-env NODE_ENV=development webpack-dev-server --open \" \"nodemon ./server/server.js\"",
+    "start": "cross-env NODE_ENV=production nodemon server/server.js",
+    "build": "cross-env NODE_ENV=production webpack",
+    "dev": "cross-env NODE_ENV=development concurrently \" webpack-dev-server --open --hot \" \"nodemon ./server/server.js\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -49,6 +49,7 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-hot-loader": "^4.12.21",
-    "react-redux": "^7.2.0"
+    "react-redux": "^7.2.0",
+    "superagent": "^5.3.1"
   }
 }

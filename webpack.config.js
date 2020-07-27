@@ -8,7 +8,7 @@ module.exports = {
   entry: ['./client/index.js'],
   output: {
     path: path.resolve(__dirname, 'dist'),
-    publicPath: '/',
+    publicPath: '/dist/',
     filename: 'bundle.js',
   },
   mode: process.env.NODE_ENV,
@@ -16,12 +16,12 @@ module.exports = {
     host: 'localhost',
     port: 8080,
     // match the output path
-    contentBase: path.resolve(__dirname, 'dist'),
+    contentBase: path.resolve(__dirname, 'client'),
     // enable HMR on the devServer
     hot: true,
     watchContentBase: true,
     // match the output 'publicPath'
-    publicPath: '/',
+    publicPath: '/dist/',
     // fallback to root for other urls
     historyApiFallback: true,
 
@@ -29,7 +29,7 @@ module.exports = {
 
     headers: { 'Access-Control-Allow-Origin': '*' },
     proxy: {
-      '/api/**': {
+      '/server': {
         target: 'http://localhost:3000/',
         secure: false,
       },
