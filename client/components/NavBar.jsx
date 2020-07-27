@@ -8,7 +8,7 @@ import { IconButton } from '@material-ui/core';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { getCards, selectDeck } from '../reducers/deckSlice';
-import { getAll, selectCard } from '../reducers/cardSlice';
+import { getAll } from '../reducers/cardSlice';
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -16,6 +16,9 @@ const useStyles = makeStyles(() => ({
   },
   button: {
     marginLeft: 'auto',
+  },
+  button2: {
+    marginRight: 'auto',
   },
   title: {
     flexGrow: 1,
@@ -33,7 +36,8 @@ const NavBar = (props) => {
           <IconButton edge="start" className={classes.menuButton}>
             <img src={logo} style={{ width: 165, height: 80 }}></img>
           </IconButton>
-          <button
+          <Button
+            className={classes.button2}
             id="getCards"
             onClick={() => {
               fetch('/server/cards')
@@ -45,8 +49,8 @@ const NavBar = (props) => {
               document.querySelector('#getCards').style.display = 'none';
             }}
           >
-            Add Cards to Board
-          </button>
+            Add Cards
+          </Button>
 
           <Button className={classes.button} onClick={props.logout}>
             Logout
