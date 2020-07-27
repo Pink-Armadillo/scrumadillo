@@ -9,9 +9,9 @@ import { createMuiTheme } from '@material-ui/core/styles';
 const themes = createMuiTheme({
   palette: {
     primary: {
-      light: '#63a4ff',
+      light: '#E3E1E2',
       main: '#3f50b5',
-      dark: '#004ba0',
+      dark: '#DED7DE',
       contrastText: '#fff',
     },
     secondary: {
@@ -26,11 +26,6 @@ const themes = createMuiTheme({
 const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
-    backgroundColor: themes.palette.primary.dark,
-  },
-  name: {
-    backgroundColor: themes.palette.primary.dark,
-    color: themes.palette.primary.contrastText,
   },
   detail: {
     backgroundColor: themes.palette.primary.light,
@@ -40,23 +35,30 @@ const useStyles = makeStyles((theme) => ({
 
 const Task = (props) => {
   const classes = useStyles();
+  const [checked, setChecked] = React.useState(false);
+  const handleChange = (event) => {
+    setChecked(event.target.checked);
+    document.querySelector('#details').style.display = 'none';
+  }
   return (
-      <List dense className={classes.root}>
-        <ListItem className={classes.name}>
-          <ListItemSecondaryAction>
-            <Checkbox
-              defaultUnchecked
-              color='secondary'
-              inputProps={{ 'aria-label': 'checkbox with default color' }}
-            />
-          </ListItemSecondaryAction>
-          <strong>{props.name}</strong>
-        </ListItem>
-        <ListItem button className={classes.detail}>
+    <List dense className={classes.root}>
+
+      <ListItem >
+        <ListItemSecondaryAction>
+          <Checkbox
+            checked={checked}
+            onChange={handleChange}
+            inputProps={{ 'aria-label': 'primary checkbox' }}
+          />
+        </ListItemSecondaryAction>
+        <strong>{props.name}</strong>
+      </ListItem>
+
+      <ListItem id='details' button className={classes.detail} >
           {props.detail}
           {props.complete}
         </ListItem>
-      </List >
+    </List >
   )
 }
 
