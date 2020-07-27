@@ -7,6 +7,7 @@ import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Card from './Card.jsx';
 import { getCards, selectDeck } from '../reducers/deckSlice';
+import { getAll, selectCard } from '../reducers/cardSlice';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -21,12 +22,25 @@ const useStyles = makeStyles((theme) => ({
 
 const Board = (props) => {
   const dispatch = useDispatch();
-  const { deck } = useSelector(selectDeck);
+  const { card } = useSelector(selectCard);
+  const current = card.current;
+  console.log('current', current);
 
   const cardsArr = [];
   if (props.id === 'stack') {
-    for (let i = 0; i < deck.cards.length; i++) {
-      cardsArr.push(<Card key={i} name={deck.cards[i].name} />);
+    for (let i = current + 1; i < card.cards.length; i++) {
+      cardsArr.push(<Card key={i} name={card.cards[i].name} />);
+    }
+  }
+
+  if (props.id === 'inProgress' && card.cards[0]) {
+    console.log('in if', card.cards[current]);
+    cardsArr.push(<Card key={current} name={card.cards[current].name} />);
+  }
+
+  if (props.id === 'complete') {
+    for (let i = 0; i < current; i++) {
+      cardsArr.push(<Card key={i} name={card.cards[i].name} />);
     }
   }
 
