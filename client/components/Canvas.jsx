@@ -11,7 +11,7 @@ import Typography from '@material-ui/core/Typography';
 // const mapStateToProps = state => ({});
 // const mapDispatchToProps = dispatch => ({});
 
-const useStyles = theme => ({
+const useStyles = (theme) => ({
   root: {
     flexGrow: 1,
   },
@@ -22,13 +22,11 @@ const useStyles = theme => ({
   },
   heading: {
     fontSize: theme.typography.pxToRem(15),
-    color:'#363738',
+    color: '#363738',
     fontWeight: theme.typography.fontWeightBold,
     fontFamily: 'Roboto',
   },
 });
-
-
 
 class Canvas extends Component {
   constructor(props) {
@@ -37,33 +35,30 @@ class Canvas extends Component {
   render() {
     const { classes } = this.props;
     return (
-
-
       <div className={classes.root}>
         <Grid container spacing={3}>
           <Grid item xs={12}>
-            <NavBar />
+            <NavBar logout={this.props.logout} />
           </Grid>
           <Grid item xs={6} sm={3}>
             <Paper className={classes.paper}>
               <Typography className={classes.heading}>To Do:</Typography>
-              <Board id='todo'/>
+              <Board id="todo" />
             </Paper>
           </Grid>
           <Grid item xs={6} sm={3}>
             <Paper className={classes.paper}>
-            <Typography className={classes.heading}>In Progress:</Typography>
-              <Board id='inProgress'/>
+              <Typography className={classes.heading}>In Progress:</Typography>
+              <Board id="inProgress" />
             </Paper>
           </Grid>
           <Grid item xs={6} sm={3}>
             <Paper className={classes.paper}>
-            <Typography className={classes.heading}>Completed:</Typography>
-              <Board id='complete'/>
+              <Typography className={classes.heading}>Completed:</Typography>
+              <Board id="complete" />
             </Paper>
           </Grid>
-        </Grid >
-
+        </Grid>
       </div>
     );
   }
