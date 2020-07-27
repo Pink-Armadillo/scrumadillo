@@ -1,21 +1,11 @@
 import React from 'react';
 
-// const [checked, setChecked] = React.useState(true);
 
-// const handleChange = (event) => {
-//   setChecked(event.target.checked);
-// };
+const Task = (props) => {
 
-class Task extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    const { classes } = this.props;
-
-    return <div> Task</div>;
-  }
+  return (
+    <div> Task</div>
+  )
 }
 
 //  import { Test } from '../reducers/card';

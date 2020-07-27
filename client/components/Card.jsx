@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 //import { connect } from 'react-redux';
 
 import Task from './Task';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Accordion from '@material-ui/core/Accordion';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
@@ -15,7 +15,7 @@ import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import ListItemText from '@material-ui/core/ListItemText';
 import Paper from '@material-ui/core/Paper';
 
-const useStyles = theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
   },
@@ -34,49 +34,66 @@ const useStyles = theme => ({
   box: {
     marginRight: 'auto',
   },
-});
+}));
 
-class Card extends Component {
-  constructor(props) {
-    super(props);
+const Card = (props) => {
+  const classes = useStyles();
+  console.log(props);
+  if (props.id === 'inProgress') {
+    return (
+      <div className={classes.root}>
+        <Accordion>
+          <AccordionSummary
+            expandIcon={<ExpandMoreIcon />}
+            aria-controls="panel1a-content"
+            id="panel1a-header"
+          >
+            <Typography className={classes.heading}>Card w Tasks</Typography>
+          </AccordionSummary>
+          <AccordionDetails>
+            <List dense className={classes.root}>
+              {/* map tasks here */}
+              <ListItem>
+                <Task className={classes.box} />
+              </ListItem>
+            </List>
+          </AccordionDetails>
+        </Accordion>
+      </div>
+    );
   }
+  // } else if (props.id === 'stack') {
+  //   <div className={classes.root}>
+  //     <Paper className={classes.paper}>{props.name}</Paper>
+  //   </div>;
+  else {
+    const todoArray = [];
+    if (props.card) {
+      let todo = props.card.todo;
+      console.log('in cards', props.card.todo);
 
-  render() {
-    const { classes } = this.props;
-    if (this.props.id === 'inProgress') {
-      return (
-        <div className={classes.root}>
+      for (let i = 0; i < todo.length; i += 1) {
+        todoArray.push(
+          <div>
+            <li>{todo[i].taskName}</li>
+            <li>{todo[i].details} </li>
 
-          <Accordion>
-            <AccordionSummary
-              expandIcon={<ExpandMoreIcon />}
-              aria-controls="panel1a-content"
-              id="panel1a-header"
-            >
-              <Typography className={classes.heading}>Card w Tasks
-          </Typography>
-            </AccordionSummary>
-            <AccordionDetails>
-              <List dense className={classes.root}>
-                <ListItem>
-
-                  <Task className={classes.box} />
-                </ListItem>
-              </List>
-
-            </AccordionDetails>
-          </Accordion>
-        </div>
-      );
-    } else {
-      return (
-        <div className={classes.root}>
-
-          <Paper className={classes.paper}>Card</Paper>
-        </div>
-      );
+            <li>{todo[i].completed}</li>
+          </div>
+        );
+      }
     }
-  }
-}
 
-export default withStyles(useStyles)(Card);
+    return (
+      <div className={classes.root}>
+        <Paper className={classes.paper}>
+          {props.name}
+          {props.url}
+          {todoArray}
+        </Paper>
+      </div>
+    );
+  }
+};
+
+export default Card;
