@@ -21,13 +21,16 @@ main.get('/github', githubController.authorize, githubController.token, (req, re
 });
 
 main.post('/login', userController.verifyUser, (req, res) => {
-  return res.status(200).json('logged in');
+  return res.status(200).json(res.locals.user);
 });
 
 main.post('/signup', userController.createUser, (req, res) => {
   return res.status(200).json(res.locals.user);
 });
 
+main.get('/boardState/:username', boardController.getBoard, (req, res) => {
+  return res.status(200).json(res.locals.board);
+});
 main.post('/boardState', boardController.saveBoard, (req, res) => {
   return res.status(200).json(res.locals.board);
 });
