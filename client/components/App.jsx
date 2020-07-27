@@ -3,6 +3,12 @@ import React, { Component } from 'react';
 const axios = require('axios');
 
 import Canvas from './Canvas';
+
+import axios from 'axios';
+//import { useDispatch, useSelector } from 'react-redux';
+
+// merge resolved Sunday 5:46 PM
+
 import Signup from '../component/Signup';
 import Login from '../component/Login';
 
@@ -46,6 +52,12 @@ class App extends Component {
       console.log('passwords not matched');
     }
   }
+
+  // componentDidMount() {
+  //   fetch('/server/cards')
+  //     .then((data) => data.json())
+  //     .then((data) => dispatch(() => cardSlice(data)));
+  // }
 
   render() {
     let main;
