@@ -18,19 +18,21 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const NavBar = () => {
+const NavBar = (props) => {
   const classes = useStyles();
-    return(
-        <div>
-        <AppBar position="static" color="transparent">
-            <Toolbar>
-              <IconButton edge="start" className={classes.menuButton}>
-                <img src={logo} style={{ width: 165, height: 80 }}></img>
-              </IconButton>
-                <Button className={classes.button}>Logout</Button>
-            </Toolbar>
-        </AppBar>
-        </div>
-    )
-}
+  return (
+    <div>
+      <AppBar position="static" color="transparent">
+        <Toolbar>
+          <IconButton edge="start" className={classes.menuButton}>
+            <img src={logo} style={{ width: 165, height: 80 }}></img>
+          </IconButton>
+          <Button className={classes.button} onClick={props.logout}>
+            Logout
+          </Button>
+        </Toolbar>
+      </AppBar>
+    </div>
+  );
+};
 export default NavBar;
