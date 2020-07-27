@@ -14,26 +14,22 @@ class Task extends React.Component {
   render() {
     const { classes } = this.props;
 
-    return (
-      <div> Task
-      </div>
-    );
+    return <div> Task</div>;
   }
 }
 
-<!-- import { Test } from '../reducers/card';
-import { LoginTest } from '../reducers/login';
-import { DeckTest } from '../reducers/deck';
-const Task = () => {
-  return (
-    <div>
-      <Test />
-      <LoginTest />
-      <DeckTest />
-      test in task
-    </div>
-  );
-}; -->
-
+//  import { Test } from '../reducers/card';
+// import { LoginTest } from '../reducers/login';
+// import { DeckTest } from '../reducers/deck';
+// const Task = () => {
+//   return (
+//     <div>
+//       <Test />
+//       <LoginTest />
+//       <DeckTest />
+//       test in task
+//     </div>
+//   );
+// };
 
 export default Task;
