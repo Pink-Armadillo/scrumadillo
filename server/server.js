@@ -6,6 +6,8 @@ const request = require('superagent');
 
 const userController = require('./user-controller.js');
 const githubController = require('./github-controller.js');
+const boardController = require('./board-controller.js');
+
 const cardsRouter = require('./cards-router.js');
 const main = express.Router();
 
@@ -16,31 +18,44 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use('/server', main);
 
-main.get(
-  '/github',
-  githubController.authorize,
-  githubController.token,
-  (req, res) => {
-    // return res.status(200).json(res.locals.authorized);
-    // // redirect("http://localhost:3000/")
-    // // .json(res.locals.authorized);
-    res.redirect(url.format({
-      pathname: "http://localhost:8080/",
-      query: {
-        username: res.locals.authorized.username,
-      }
-    }));
-  }
-);
+
+// main.get(
+//   '/github',
+//   githubController.authorize,
+//   githubController.token,
+//   (req, res) => {
+//     // return res.status(200).json(res.locals.authorized);
+//     // // redirect("http://localhost:3000/")
+//     // // .json(res.locals.authorized);
+//     res.redirect(url.format({
+//       pathname: "http://localhost:8080/",
+//       query: {
+//         username: res.locals.authorized.username,
+//       }
+//     }));
+//   }
+// );
+
+main.get('/github', githubController.authorize, githubController.token, (req, res) => {
+  return res.status(200).json(res.locals.authorized);
+});
+
 
 
 
 main.post('/login', userController.verifyUser, (req, res) => {
-  return res.status(200).json('logged in');
+  return res.status(200).json(res.locals.user);
 });
 
 main.post('/signup', userController.createUser, (req, res) => {
   return res.status(200).json(res.locals.user);
+});
+
+main.get('/boardState/:username', boardController.getBoard, (req, res) => {
+  return res.status(200).json(res.locals.board);
+});
+main.post('/boardState', boardController.saveBoard, (req, res) => {
+  return res.status(200).json(res.locals.board);
 });
 
 /** ROUTE FOR HANDLING CARDS FETCH REQUEST **/
