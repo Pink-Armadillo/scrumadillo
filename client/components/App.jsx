@@ -4,7 +4,6 @@ const axios = require('axios');
 
 import Canvas from './Canvas';
 
-import axios from 'axios';
 //import { useDispatch, useSelector } from 'react-redux';
 
 // merge resolved Sunday 5:46 PM
