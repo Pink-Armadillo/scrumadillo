@@ -1,5 +1,6 @@
 const { User } = require('./models/models.js');
 const request = require('superagent');
+require('dotenv').config();
 
 const githubController = {};
 
@@ -10,8 +11,8 @@ githubController.authorize = (req, res, next) => {
   request
     .post('https://github.com/login/oauth/access_token')
     .send({
-      client_id: 'fade47f049a7b9f4a3dc',
-      client_secret: '927eba2bb044fded4ae56cf2e26cda3152d6135e',
+      client_id: process.env.CLIENT_ID,
+      client_secret: process.env.CLIENT_SECRET,
       code: code,
     })
     .set('Accept', 'application/json')
