@@ -1,4 +1,8 @@
-import { configureStore, getDefaultMiddleware, combineReducers } from '@reduxjs/toolkit';
+import {
+  configureStore,
+  getDefaultMiddleware,
+  combineReducers,
+} from '@reduxjs/toolkit';
 import cardReducer from '../reducers/cardSlice';
 import deckReducer from '../reducers/deckSlice';
 import loginReducer from '../reducers/loginSlice';
@@ -27,6 +31,9 @@ const updateBoardServer = (store) => (next) => (action) => {
   let result = next(action);
   return result;
 };
+
+//user the name of the reducer to access that piece state in the global environment
+//global state is an object containing 3 reducers store = {card{}, deck{}, login{}}
 
 const store = configureStore({
   reducer: combineReducers({
