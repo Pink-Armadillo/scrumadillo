@@ -1,5 +1,8 @@
 import React from 'react';
-// import { Link } from 'react-router-dom';
+
+import axios from 'axios';
+import { Link } from 'react-router-dom';
+
 
 class Login extends React.Component {
   // check username and password with database
@@ -64,6 +67,7 @@ class Login extends React.Component {
             }}
           ></input>
           <br></br>
+          {/* Takes in the inputs and sets state.logged in to true */}
           <button
             onClick={(event) => {
               event.preventDefault();
@@ -86,7 +90,10 @@ class Login extends React.Component {
           >
             Login
           </button>
-          {/* <Link to="/signup">
+
+          <Link to="/signup">
+
+         
             <button
               style={{
                 width: '120px',
@@ -99,11 +106,23 @@ class Login extends React.Component {
                 fontWeight: 'bold',
                 borderRadius: '4px',
               }}
+
+              onClick={this.showsignup}
             >
               Sign Up
             </button>
-          </Link> */}
+          </Link>
+
+           
           <br></br>
+          {/* Tried to use a functional get request to Github OAuth but realized we should've just used cookies
+          <button onClick={ (e) => {e.preventDefault(); console.log('for github'); this.props.github()}}>
+            <img
+              id="github-logo"
+              src="https://www.backblaze.com/blog/wp-content/uploads/2018/05/github-logo.png"
+              style={{ width: '250px' }}
+            />
+          </button> */}
           <a href="https://github.com/login/oauth/authorize?client_id=fade47f049a7b9f4a3dc">
             <img
               id="github-logo"
@@ -111,7 +130,8 @@ class Login extends React.Component {
               style={{ width: '250px' }}
             />
           </a>
-          {/* <button>
+          {/* Didn't get to Google OAuth 
+            <button>
             <img
               id="google-logo"
               src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/471px-Google_%22G%22_Logo.svg.png"
