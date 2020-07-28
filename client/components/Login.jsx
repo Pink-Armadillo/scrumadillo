@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 
 class Login extends React.Component {
   // check username and password with database
@@ -86,7 +86,7 @@ class Login extends React.Component {
           >
             Login
           </button>
-          <Link to="/signup">
+          {/* <Link to="/signup">
             <button
               style={{
                 width: '120px',
@@ -102,7 +102,7 @@ class Login extends React.Component {
             >
               Sign Up
             </button>
-          </Link>
+          </Link> */}
           <br></br>
           <a href="https://github.com/login/oauth/authorize?client_id=fade47f049a7b9f4a3dc">
             <img
