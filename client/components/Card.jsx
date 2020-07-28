@@ -38,11 +38,7 @@ const Card = (props) => {
     for (let i = 0; i < todo.length; i += 1) {
       todoArray.push(
         <div>
-            <Task
-              name={todo[i].taskName}
-              detail={todo[i].details}
-              complete={todo[i].completed}
-            />
+          <Task name={todo[i].taskName} detail={todo[i].details} complete={todo[i].completed} id={`id${i}`} />
         </div>
       );
     }
@@ -50,11 +46,11 @@ const Card = (props) => {
   return (
     <div className={classes.root}>
       <Paper className={classes.paper}>
-        <Typography className={classes.heading}>
-          {props.name}
-        </Typography>
+        <Typography className={classes.heading}>{props.name}</Typography>
         <br />
-        <a href={props.url} target="_blank"><em>{props.url}</em></a>
+        <a href={props.url} target="_blank">
+          <em>{props.url}</em>
+        </a>
         {todoArray}
       </Paper>
     </div>
