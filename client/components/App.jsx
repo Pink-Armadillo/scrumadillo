@@ -1,17 +1,13 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 const axios = require('axios');
 
-import Canvas from './Canvas';
-
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-
-import { NavBar } from './NavBar';
-
 //import { useDispatch, useSelector } from 'react-redux';
-
 // merge resolved Sunday 5:46 PM
 
+// import { NavBar } from './NavBar';
+import Canvas from './Canvas';
 import Signup from './Signup';
 import Login from './Login';
 
@@ -21,19 +17,21 @@ class App extends Component {
     this.state = {
       username: null,
       userId: null,
+      // hacky state values to conditionally render different components on '/' route
       loggedIn: false,
-      showSignUp: false,
+      // showSignUp: false,
     };
     this.loginFunction = this.loginFunction.bind(this);
     this.logOut = this.logOut.bind(this);
     this.signupFunction = this.signupFunction.bind(this);
-    this.github = this.github.bind(this);
-    // this.showSignUpFunction = this.showSignUpFunction.bind(this)
+    // this.showSignUpFunction = this.showSignUpFunction.bind(this);
+    // this.github = this.github.bind(this);
   }
 
   logOut() {
     this.setState({ loggedIn: false });
   }
+
   loginFunction(username, password) {
     axios
       .post('/server/login', { username, password })
@@ -51,6 +49,7 @@ class App extends Component {
 
   signupFunction(username, password, confirm) {
     if (password === confirm) {
+      console.log('signup function');
       axios
         .post('/server/signup', { username: username, password: password })
         .then((user) => {
@@ -72,26 +71,29 @@ class App extends Component {
     }
   }
 
-  github() {
-    if (true) {
-      console.log('github');
-      axios
-        .post(
-          'https://cors-anywhere.herokuapp.com/https://github.com/login/oauth/authorize',
-          {
-            params: { client_id: 'fade47f049a7b9f4a3dc' },
-            headers: { 'Access-Control-Allow-Origin': '*' },
-          }
-        )
-        .then((data) => console.log('dataaa', data))
-        .catch((err) => console.log('errrr', err));
-    }
-  }
+  /* Didn't complete the Github authentication process.
+   * The process starts on the <a href> on <Login /> or <Signup />
+   * The end result is a User object returned to the web browser
+   * We didn't have time, but we were gonna use cookies to show <Canvas /> when Github Auth finishes
+   */
+  // github() {
+  //   if (true) {
+  //     console.log('github');
+  //     axios
+  //       .post(
+  //         'https://cors-anywhere.herokuapp.com/https://github.com/login/oauth/authorize',
+  //         {
+  //           params: { client_id: 'fade47f049a7b9f4a3dc' },
+  //           headers: { 'Access-Control-Allow-Origin': '*' },
+  //         }
+  //       )
+  //       .then((data) => console.log('dataaa', data))
+  //       .catch((err) => console.log('errrr', err));
+  //   }
+  // }
 
   // showSignUpFunction() {
-
   //   this.setState({ showSignUp: true });
-  //   console.log('in show sign up')
   // }
 
   // componentDidMount() {
@@ -102,10 +104,17 @@ class App extends Component {
 
   render() {
     let main;
+    // Shows <Canvas /> when logged in
     if (this.state.loggedIn === true) {
       main = <Canvas logout={this.logOut} />;
+      // Shows <Login /> when not logged in
     } else if (this.state.loggedIn === false) {
-      main = <Login login={this.loginFunction} github={this.github} />;
+      main = (
+        <Login
+          login={this.loginFunction}
+          showsignup={this.showSignUpFunction}
+        />
+      );
     }
 
     return (
@@ -113,15 +122,10 @@ class App extends Component {
         <Router>
           <Switch>
             <Route
-              exact
-              path="/:username"
-              render={() => <Login login={this.loginFunction} />}
-            />
-            <Route exact path="/" render={() => main} />
-            <Route
               path="/signup"
               render={() => <Signup signup={this.signupFunction} />}
             />
+            <Route exact path="/" render={() => main} />
           </Switch>
         </Router>
       </div>

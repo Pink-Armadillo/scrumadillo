@@ -68,7 +68,7 @@ class Login extends React.Component {
             }}
           ></input>
           <br></br>
-          {/* <Link to="/"> */}
+          {/* Takes in the inputs and sets state.logged in to true */}
           <button
             onClick={(event) => {
               event.preventDefault();
@@ -91,27 +91,28 @@ class Login extends React.Component {
           >
             Login
           </button>
-          {/* </Link> */}
+
           <Link to="/signup">
-          <button
-            style={{
-              width: '120px',
-              height: '40px',
-              marginTop: '10px',
-              marginBottom: '25px',
-              border: 'solid 1px #f9f9f9',
-              backgroundColor: '#9cdaf0',
-              fontFamily: 'sans-serif',
-              fontWeight: 'bold',
-              borderRadius: '4px',
-            }}
-          >
-            Sign Up
-          </button>
+            <button
+              style={{
+                width: '120px',
+                height: '40px',
+                marginTop: '10px',
+                marginBottom: '25px',
+                border: 'solid 1px #f9f9f9',
+                backgroundColor: '#9cdaf0',
+                fontFamily: 'sans-serif',
+                fontWeight: 'bold',
+                borderRadius: '4px',
+              }}
+              onClick={this.showsignup}
+            >
+              Sign Up
+            </button>
           </Link>
           <br></br>
-          {/*  */}
-          {/* <button onClick={ (e) => {e.preventDefault(); console.log('for github'); this.props.github()}}>
+          {/* Tried to use a functional get request to Github OAuth but realized we should've just used cookies
+          <button onClick={ (e) => {e.preventDefault(); console.log('for github'); this.props.github()}}>
             <img
               id="github-logo"
               src="https://www.backblaze.com/blog/wp-content/uploads/2018/05/github-logo.png"
@@ -125,7 +126,8 @@ class Login extends React.Component {
               style={{ width: '250px' }}
             />
           </a>
-          {/* <button>
+          {/* Didn't get to Google OAuth 
+            <button>
             <img
               id="google-logo"
               src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/471px-Google_%22G%22_Logo.svg.png"

@@ -21,7 +21,11 @@ userController.verifyUser = (req, res, next) => {
     if (password === user.password) {
       res.locals.user = user;
       return next();
-    } else return next({ error: 'Username and Password combination was not found.', status: 401 });
+    } else
+      return next({
+        error: 'Username and Password combination was not found.',
+        status: 401,
+      });
   });
 };
 

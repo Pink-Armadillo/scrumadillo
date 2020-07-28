@@ -10,7 +10,7 @@ import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles(() => ({
   board: {
     backgroundColor: '#004ba0',
-  }
+  },
 }));
 
 const Board = (props) => {
@@ -37,7 +37,7 @@ const Board = (props) => {
           url={card.cards[current].url}
           card={card.cards[current]}
         />
-        <Button onClick={() => dispatch(increment())}>Increment</Button>
+        <Button onClick={() => dispatch(increment())}>Card Complete</Button>
       </div>
     );
   }

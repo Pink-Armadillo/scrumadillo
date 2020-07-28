@@ -15,8 +15,10 @@ class Signup extends React.Component {
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
-        }}>
-        <form id="signup-form"
+        }}
+      >
+        <form
+          id="signup-form"
           style={{
             border: '1px solid black',
             display: 'inline-block',
@@ -29,9 +31,12 @@ class Signup extends React.Component {
             borderWidth: '1px',
             border: 'solid',
             borderColor: '#D9DCE0',
-          }}>
+          }}
+        >
           <img
-            src="../logoDarkGray.png"
+            // logo url
+            src=""
+            alt="SCRUMadillo"
             style={{ width: '300px', marginBottom: '15px' }}
           ></img>
           <br></br>
@@ -113,7 +118,8 @@ class Signup extends React.Component {
                 style={{ width: '250px' }}
               />
             </a>
-            {/* <button>
+            {/* Didn't get to Google OAuth
+            <button>
               <img
                 id="google-logo"
                 src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/471px-Google_%22G%22_Logo.svg.png"

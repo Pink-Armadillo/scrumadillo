@@ -49,10 +49,20 @@ const Task = (props) => {
             defaultUnchecked
             color="secondary"
             inputProps={{ 'aria-label': 'checkbox with default color' }}
-            onClick={() =>
-              (document.querySelector(`#${props.id}`).style.textDecoration =
-                'line-through')
-            }
+            onClick={() => {
+              if (
+                document.querySelector(`#${props.id}`).style.textDecoration ===
+                'line-through'
+              ) {
+                document.querySelector(`#${props.id}`).style.textDecoration =
+                  'none';
+                // set completed to false
+              } else {
+                document.querySelector(`#${props.id}`).style.textDecoration =
+                  'line-through';
+                // set completed to true
+              }
+            }}
           />
         </ListItemSecondaryAction>
         <strong>{props.name}</strong>
