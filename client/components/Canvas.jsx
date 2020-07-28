@@ -27,18 +27,18 @@ const useStyles = makeStyles((theme) => ({
 
 const Canvas = (props) => {
   const dispatch = useDispatch();
-  console.log('props in Canvas -> ', props);
-  dispatch(
-    getLogin({
-      username: props.username,
-      userId: props.userId,
-    })
-  );
-  dispatch(
-    assignUser({
-      username: props.username,
-    })
-  );
+  // console.log('props in Canvas -> ', props);
+  // dispatch(
+  //   getLogin({
+  //     username: props.username,
+  //     userId: props.userId,
+  //   })
+  // );
+  // dispatch(
+  //   assignUser({
+  //     username: props.username,
+  //   })
+  // );
 
   useEffect(() => {
     fetch(`/server/boardState/${props.username}`)
