@@ -36,35 +36,36 @@ const Card = (props) => {
   //     <Paper className={classes.paper}>{props.name}</Paper>
   //   </div>;
 
-    const todoArray = [];
-    if (props.card) {
-      let todo = props.card.todo;
-      console.log('in cards', props.card.todo);
+  const todoArray = [];
+  if (props.card) {
+    let todo = props.card.todo;
+    console.log('in cards', props.card.todo);
 
-      for (let i = 0; i < todo.length; i += 1) {
-        todoArray.push(
-          <div>
-            <Task 
+    for (let i = 0; i < todo.length; i += 1) {
+      todoArray.push(
+        <div>
+          <Task
             name={todo[i].taskName}
             detail={todo[i].details}
             complete={todo[i].completed}
-            />
-          </div>
-        );
-      }
+            id={`id${i}`}
+          />
+        </div>
+      );
     }
-    return (
-      <div className={classes.root}>
-        <Paper className={classes.paper}>
-          <Typography className={classes.heading}>
-            {props.name}
-          </Typography>
-          <br />
-          <a href={props.url} target="_blank"><em>{props.url}</em></a>
-          {todoArray}
-        </Paper>
-      </div>
-    );
-    };
+  }
+  return (
+    <div className={classes.root}>
+      <Paper className={classes.paper}>
+        <Typography className={classes.heading}>{props.name}</Typography>
+        <br />
+        <a href={props.url} target="_blank">
+          <em>{props.url}</em>
+        </a>
+        {todoArray}
+      </Paper>
+    </div>
+  );
+};
 
 export default Card;
