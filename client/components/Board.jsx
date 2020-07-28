@@ -4,7 +4,6 @@ import Grid from '@material-ui/core/Grid';
 import Card from './Card.jsx';
 import { selectCard, increment } from '../reducers/cardSlice';
 import Button from '@material-ui/core/Button';
-import Paper from '@material-ui/core/Paper';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(() => ({
@@ -44,7 +43,7 @@ const Board = (props) => {
 
   if (props.id === 'complete') {
     for (let i = 0; i < current; i++) {
-      cardsArr.push(<Card key={i} name={card.cards[i].name} />);
+      cardsArr.push(<Card key={i} name={card.cards[i].name} />, <br />);
     }
   }
   return (

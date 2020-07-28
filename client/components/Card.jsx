@@ -2,8 +2,6 @@ import React from 'react';
 
 import Task from './Task';
 import { makeStyles } from '@material-ui/core/styles';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import List from '@material-ui/core/List';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 
@@ -31,10 +29,6 @@ const useStyles = makeStyles((theme) => ({
 
 const Card = (props) => {
   const classes = useStyles();
-  // } else if (props.id === 'stack') {
-  //   <div className={classes.root}>
-  //     <Paper className={classes.paper}>{props.name}</Paper>
-  //   </div>;
 
   const todoArray = [];
   if (props.card) {
@@ -44,12 +38,9 @@ const Card = (props) => {
     for (let i = 0; i < todo.length; i += 1) {
       todoArray.push(
         <div>
-          <Task
-            name={todo[i].taskName}
-            detail={todo[i].details}
-            complete={todo[i].completed}
-            id={`id${i}`}
-          />
+
+          <Task name={todo[i].taskName} detail={todo[i].details} complete={todo[i].completed} id={`id${i}`} />
+
         </div>
       );
     }

@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 require('dotenv').config();
+//Message Alex for the MongoDB Atlas URI if you don't have it!
 const mongoURI = process.env.MONGO_URI;
 mongoose
   .connect(mongoURI, {
@@ -11,7 +12,10 @@ mongoose
   })
   .then((data) => console.log('Connected to Mongo DEE BEE'))
   .catch((err) => console.log(err));
+
 const Schema = mongoose.Schema;
+
+//Schema for technology card.
 const cardSchema = new Schema({
   name: String,
   url: String,
@@ -24,7 +28,10 @@ const cardSchema = new Schema({
     },
   ],
 });
+
 const Card = mongoose.model('card', cardSchema);
+
+//Schema for board. Board is assigned to a user by username and is stored and retrieved on user login.
 const boardSchema = new Schema({
   current: Number,
   username: String,
@@ -44,6 +51,8 @@ const boardSchema = new Schema({
   ],
 });
 const Board = mongoose.model('board', boardSchema);
+
+//basic user schema. board_id is unused in the current state of the app.
 const userSchema = new Schema({
   username: String,
   password: String,

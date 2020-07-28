@@ -2,6 +2,7 @@ const { Board, User } = require('./models/models.js');
 
 const boardController = {};
 
+//saves current board state and assigns the logged in user to username
 boardController.saveBoard = (req, res, next) => {
   let boardData = req.body.card;
   console.log('boardData ', boardData);
@@ -21,6 +22,7 @@ boardController.saveBoard = (req, res, next) => {
   );
 };
 
+//retrieves board state data by username
 boardController.getBoard = (req, res, next) => {
   let username = req.params.username;
   Board.findOne(

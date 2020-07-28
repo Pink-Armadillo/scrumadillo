@@ -6,8 +6,8 @@ import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 import { IconButton } from '@material-ui/core';
 
-import { useSelector, useDispatch } from 'react-redux';
-import { getCards, selectDeck } from '../reducers/deckSlice';
+import { useDispatch } from 'react-redux';
+import { getCards }from '../reducers/deckSlice';
 import { getAll } from '../reducers/cardSlice';
 
 const useStyles = makeStyles(() => ({
@@ -28,12 +28,11 @@ const useStyles = makeStyles(() => ({
 const NavBar = (props) => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const { deck } = useSelector(selectDeck);
   return (
     <div>
       <AppBar position="static" color="transparent">
         <Toolbar>
-          <IconButton edge="start" className={classes.menuButton}>
+          <IconButton edge="start">
             <img src={logo} style={{ width: 165, height: 80 }}></img>
           </IconButton>
           <Button

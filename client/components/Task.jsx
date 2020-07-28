@@ -5,13 +5,12 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import Checkbox from '@material-ui/core/Checkbox';
 import { createMuiTheme } from '@material-ui/core/styles';
-
 const themes = createMuiTheme({
   palette: {
     primary: {
-      light: '#63a4ff',
+      light: '#E3E1E2',
       main: '#3f50b5',
-      dark: '#004ba0',
+      dark: '#DED7DE',
       contrastText: '#fff',
     },
     secondary: {
@@ -22,15 +21,9 @@ const themes = createMuiTheme({
     },
   },
 });
-
 const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
-    backgroundColor: themes.palette.primary.dark,
-  },
-  name: {
-    backgroundColor: themes.palette.primary.dark,
-    color: themes.palette.primary.contrastText,
   },
   detail: {
     backgroundColor: themes.palette.primary.light,
@@ -50,16 +43,14 @@ const Task = (props) => {
             color="secondary"
             inputProps={{ 'aria-label': 'checkbox with default color' }}
             onClick={() => {
-              if (
-                document.querySelector(`#${props.id}`).style.textDecoration ===
-                'line-through'
-              ) {
-                document.querySelector(`#${props.id}`).style.textDecoration =
-                  'none';
+
+
+              if (document.querySelector(`#${props.id}`).style.textDecoration === 'line-through') {
+                document.querySelector(`#${props.id}`).style.textDecoration = 'none';
                 // set completed to false
               } else {
-                document.querySelector(`#${props.id}`).style.textDecoration =
-                  'line-through';
+                document.querySelector(`#${props.id}`).style.textDecoration = 'line-through';
+
                 // set completed to true
               }
             }}
@@ -69,6 +60,7 @@ const Task = (props) => {
       </ListItem>
       <ListItem button className={classes.detail}>
         <span id={props.id}>{props.detail}</span>
+
 
         {props.complete}
       </ListItem>

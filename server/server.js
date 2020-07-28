@@ -16,32 +16,18 @@ const url = require('url');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+//main route for proxy calls to localhost 3000.
 app.use('/server', main);
 
 
-// main.get(
-//   '/github',
-//   githubController.authorize,
-//   githubController.token,
-//   (req, res) => {
-//     // return res.status(200).json(res.locals.authorized);
-//     // // redirect("http://localhost:3000/")
-//     // // .json(res.locals.authorized);
-//     res.redirect(url.format({
-//       pathname: "http://localhost:8080/",
-//       query: {
-//         username: res.locals.authorized.username,
-//       }
-//     }));
-//   }
-// );
+//OAuth
 
 main.get('/github', githubController.authorize, githubController.token, (req, res) => {
   return res.status(200).json(res.locals.authorized);
 });
 
 
-
+//login and signup routes
 
 main.post('/login', userController.verifyUser, (req, res) => {
   return res.status(200).json(res.locals.user);
@@ -51,6 +37,7 @@ main.post('/signup', userController.createUser, (req, res) => {
   return res.status(200).json(res.locals.user);
 });
 
+//Route for storing and retrieving board state
 main.get('/boardState/:username', boardController.getBoard, (req, res) => {
   return res.status(200).json(res.locals.board);
 });
