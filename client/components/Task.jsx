@@ -33,7 +33,6 @@ const useStyles = makeStyles((theme) => ({
 
 const Task = (props) => {
   const classes = useStyles();
-
   return (
     <List dense className={classes.root}>
       <ListItem className={classes.name}>
