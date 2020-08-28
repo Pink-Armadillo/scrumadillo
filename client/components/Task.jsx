@@ -35,6 +35,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Task = (props) => {
   const classes = useStyles();
+  const details = props.detail;
   const [checked, setChecked] = React.useState(false);
   const handleChange = (event) => {
     setChecked(event.target.checked);
@@ -54,8 +55,8 @@ const Task = (props) => {
         <strong>{props.name}</strong>
       </ListItem>
 
-      <ListItem id='details' button className={classes.detail} >
-          {props.detail}
+      <ListItem id="details" button className={classes.detail} >
+          {details}
           {props.complete}
         </ListItem>
     </List >
